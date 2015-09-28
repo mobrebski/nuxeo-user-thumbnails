@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.platform.thumbnail.userthumbails">
+
+	<require>org.nuxeo.ecm.platform.thumbnail.listener</require>
+	<require>org.nuxeo.ecm.platform.picture.service.thumbnailfactory</require>
+	<require>org.nuxeo.ecm.platform.video.core.thumbnailfactory</require>
+
+	<extension point="schema" target="org.nuxeo.ecm.core.schema.TypeService">
+		<schema name="userthumbnail" prefix="userthumb" src="schema/userthumbnail.xsd" />
+	</extension>
+
+	<extension point="doctype" target="org.nuxeo.ecm.core.schema.TypeService">
+		<facet name="UserThumbnail">
+			<schema name="userthumbnail" />
+		</facet>
+	</extension>
+
+	<extension point="thumbnailFactory"
+		target="org.nuxeo.ecm.core.api.thumbnail.ThumbnailService">
+		<thumbnailFactory
+			factoryClass="org.nuxeo.ecm.platform.thumbnail.userthumbnails.UserThumbnailDocumentFactory"
+			name="thumbnailVideoFactory" />
+
+		<thumbnailFactory facet="Video"
+			factoryClass="org.nuxeo.ecm.platform.thumbnail.userthumbnails.UserThumbnailVideoFactory"
+			name="thumbnailVideoFactory" />
+
+		<thumbnailFactory facet="Picture"
+			factoryClass="org.nuxeo.ecm.platform.thumbnail.userthumbnails.UserThumbnailPictureFactory"
+			name="thumbnailVideoFactory" />
+	</extension>
+
+	<!-- <extension point="actions"
+		target="org.nuxeo.ecm.platform.actions.ActionService">
+		<action id="user_thumbnail_content" order="220" type="widget">
+			<category>SUMMARY_PANEL_LEFT</category>
+			<properties>
+				<property name="widgetName">userthumb_summary_current_document_files
+				</property>
+			</properties>
+			<filter id="canUserThumb">
+				<rule grant="true">
+					<schema>userthumbnail</schema>
+				</rule>
+			</filter>
+		</action>
+	</extension>
+
+	<extension point="widgettypes"
+		target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager">
+		<widgetType name="userthumb_summary_current_document_files">
+			<configuration>
+				<sinceVersion>7.3</sinceVersion>
+				<title>Files</title>
+				<handlingLabels>true</handlingLabels>
+				<categories>
+					<category>summary</category>
+				</categories>
+				<supportedModes>
+					<mode>view</mode>
+				</supportedModes>
+				no configurable properties
+			</configuration>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/summary/userthumb_content_widget_template.xhtml
+			</property>
+		</widgetType>
+	</extension>
+
+	<extension point="widgets"
+		target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager">
+		<widget name="userthumb_summary_current_document_files" type="userthumb_summary_current_document_files">
+			<labels>
+				<label mode="any" />
+			</labels>
+			<controls mode="any">
+				<control name="requireSurroundingForm">true</control>
+				<control name="handleLabels">true</control>
+			</controls>
+		</widget>
+	</extension> -->
+
+</component>
